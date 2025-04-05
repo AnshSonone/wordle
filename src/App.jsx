@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import data from './data/api.json'
 import Line from './Line'
+import Instructions from './component/Instruction'
 
 function App() {
 
@@ -14,11 +15,15 @@ function App() {
   const [lastChar, setLastChar] = useState('')
   const [isHint, setIsHint] = useState(false)
 
+
+  const fetchData = async () => {
+    const randWord = data[Math.floor(Math.random() * data.length)]
+    setSolution(randWord.toLowerCase())
+    setGuesses(Array(6).fill(null))
+    setIsGameOver(false)
+  }
+
   useEffect(() => {
-    const fetchData = async () => {
-      const randWord = data[Math.floor(Math.random() * data.length)]
-      setSolution(randWord.toLowerCase())
-    }
 
     fetchData()
   }, [])
@@ -43,6 +48,10 @@ function App() {
         const isCorrect = solution == currentGuess
         if (isCorrect){
           setIsWon(true)
+          setIsGameOver(true)
+        }
+
+        if (newGuess[5]){
           setIsGameOver(true)
         }
       }
@@ -73,11 +82,16 @@ function App() {
     setFirstChar(firstChar)
     setLastChar(lastChar)
     setIsHint(true)
+    if (isGameOver){
+      setIsHint(false)
+    }
   }
 
   return (
+    <>
+    <Instructions />
     <div className='board'>
-      <div>
+      <div className='type'>
         <p>Type using keyboard</p>
       </div>
       {
@@ -106,7 +120,7 @@ function App() {
       </div>
 
       {
-        isHint && <div>
+        isHint && <div className='word-s-e'>
             <h2>Word start with {firstChar} and end with {lastChar}</h2>
           </div>
       }
@@ -115,7 +129,14 @@ function App() {
         <h2 className='won'>You Guessed Right.</h2>
       </div>
       }
+
+      {
+        isGameOver && <div className='start-again' onClick={fetchData}>
+        <button>Start again</button>
+      </div>
+      }
     </div>
+    </>
   )
 }
 

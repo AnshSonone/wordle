@@ -1,9 +1,3 @@
-body{
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-}
-
 .board{
     display: flex;
     flex-direction: column;
@@ -13,23 +7,53 @@ body{
     top: 50px;
 }
 
+.type p{
+    color: white;
+}
+
 .answer{
     display: flex;
     gap: 10px;
+    margin: 5px 0px;
+}
+
+.answer h2{
+    color: white;
+    margin: 5px 2px;
 }
 
 .hint{
+    color: white;
     padding: 2px;
     border-radius: 2px;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
 .hint button{
+    color: white;
     font-size: 15px;
     border: none;
     background-color: transparent;
 }
 
+.word-s-e h2{
+    color: white;
+}
+
 .won{
     color: limegreen;
+}
+
+.start-again{
+    display: flex;
+    justify-content: center;
+}
+
+.start-again button{
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid white;
+    background-color: transparent;
 }
