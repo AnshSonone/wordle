@@ -7,7 +7,6 @@
 
 .indicate{
     display: flex;
-    align-items: center;
     margin: 10px 0px;
 }
 
@@ -30,4 +29,15 @@
     width: 20px;
     height: 20px;
     background-color: limegreen;
+}
+
+@media screen and (max-width: 940px) {
+    .instruction{
+        position: relative;
+        left: 0px;
+    }
+
+    .indicate{
+        justify-content: center;
+    }
 }

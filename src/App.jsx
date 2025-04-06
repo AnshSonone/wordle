@@ -21,6 +21,7 @@ function App() {
     setSolution(randWord.toLowerCase())
     setGuesses(Array(6).fill(null))
     setIsGameOver(false)
+    setIsHint(false)
   }
 
   useEffect(() => {
